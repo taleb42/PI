@@ -1,39 +1,65 @@
 <?php
-require_once 'db_connection.php';
 session_start();
-if (!isset($_SESSION['email'])) {
-    header("Location: Client.php");
-    exit();
+if (!isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
 }
-
-// Fetch user data from database
-$email = $_SESSION['email'];
-$sql = "SELECT * FROM client WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$role = $_SESSION['role'];
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            padding: 50px;
+        }}
+        .container {{
+            max-width: 700px;
+            margin: auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }}
+        h2 {{ text-align: center; }}
+        ul {{
+            list-style: none;
+            padding: 0;
+        }}
+        li {{
+            margin: 10px 0;
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+        }}
+        li a {{
+            color: white;
+            text-decoration: none;
+            display: block;
+        }}
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenue sur votre tableau de bord</h1>
-        <?php
-        // Check if 'name' key exists in the user array and handle null values
-        $nom = isset($user['nom']) ? htmlspecialchars($user['nom']) : 'Utilisateur inconnu';
-        ?>
-        <p>Bienvenue, <strong><?php echo $nom; ?></strong> ! Nous sommes ravis de vous revoir.</p>
-        <!-- Ajouter ici les éléments du tableau de bord -->
-        <a href="client.php" class="btn">Déconnexion</a>
+        <h2>Bienvenue dans votre tableau de bord</h2>
+        <ul>
+            <?php if ($role === 'admin'): ?>
+                <li><a href='add_admin_form.php'>Ajouter un administrateur</a></li>
+                <li><a href='add_employe_form.php'>Ajouter un employé</a></li>
+                <li><a href='add_service_form.php'>Ajouter un service</a></li>
+                <li><a href='add_categorie_form.php'>Ajouter une catégorie</a></li>
+                <li><a href='add_client_form.php'>Ajouter un client</a></li>
+            <?php elseif ($role === 'client'): ?>
+                <li><a href='voir_demandes.php'>Voir mes demandes</a></li>
+                <li><a href='nouvelle_demande.php'>Nouvelle demande</a></li>
+            <?php endif; ?>
+        </ul>
     </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter une catégorie</title>
+    <title>Ajouter un service</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,11 +51,15 @@
 </head>
 <body>
 <div class="form-container">
-    <h2>Ajouter une nouvelle catégorie</h2>
-    <form action="insert_categorie.php" method="POST">
+    <h2>Ajouter un nouveau service</h2>
+    <form action="insert_service.php" method="POST">
         
-            <input type="text" name="nom" placeholder="Nom de la catégorie" required>
+            <input type="text" name="nom_service" placeholder="Nom du service" required>
             <textarea name="description" placeholder="Description" required></textarea>
+            <input type="number" name="id_categorie" placeholder="ID de la catégorie" required>
+            <input type="number" step="0.01" name="prix" placeholder="Prix" required>
+            <input type="number" name="duree_estimee" placeholder="Durée estimée (minutes)" required>
+            <input type="number" name="id_admin" placeholder="ID de l'administrateur" required>
         
         <input type="submit" value="Ajouter">
     </form>

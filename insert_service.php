@@ -7,14 +7,17 @@ $erreur = "";
 $message = "";
 
 try {
-    $nom = $_POST['nom'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$stmt = $conn->prepare("INSERT INTO client (nom, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $nom, $email, $password);
+    $nom = $_POST['nom_service'];
+$description = $_POST['description'];
+$categorie = $_POST['id_categorie'];
+$prix = $_POST['prix'];
+$duree = $_POST['duree_estimee'];
+$admin = $_POST['id_admin'];
+$stmt = $conn->prepare("INSERT INTO service (nom_service, description, id_categorie, prix, duree_estimee, id_admin) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssiddi", $nom, $description, $categorie, $prix, $duree, $admin);
 $stmt->execute();
     $succes = true;
-    $message = "Le client a été ajouté avec succès.";
+    $message = "Le service a été ajouté avec succès.";
 } catch (Exception $e) {
     $erreur = $e->getMessage();
 }

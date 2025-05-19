@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter une catégorie</title>
+    <title>Ajouter un administrateur</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,11 +51,12 @@
 </head>
 <body>
 <div class="form-container">
-    <h2>Ajouter une nouvelle catégorie</h2>
-    <form action="insert_categorie.php" method="POST">
+    <h2>Ajouter un nouvel administrateur</h2>
+    <form action="insert_admin.php" method="POST">
         
-            <input type="text" name="nom" placeholder="Nom de la catégorie" required>
-            <textarea name="description" placeholder="Description" required></textarea>
+            <input type="text" name="nom" placeholder="Nom complet" required>
+            <input type="email" name="email" placeholder="Adresse e-mail" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
         
         <input type="submit" value="Ajouter">
     </form>

@@ -10,11 +10,11 @@ try {
     $nom = $_POST['nom'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$stmt = $conn->prepare("INSERT INTO client (nom, email, password) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO administrateur (nom, email, password) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $nom, $email, $password);
 $stmt->execute();
     $succes = true;
-    $message = "Le client a été ajouté avec succès.";
+    $message = "L'administrateur a été ajouté avec succès.";
 } catch (Exception $e) {
     $erreur = $e->getMessage();
 }
