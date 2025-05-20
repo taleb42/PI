@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
-include 'db_connection.php';
+include(__DIR__ . '/../db_connection.php');
 session_start(); // Démarrer la session
 
 // Définir une variable pour les messages d'erreur

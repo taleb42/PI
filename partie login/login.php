@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db_connection.php");
+include(__DIR__ . '/../db_connection.php');
 
 $erreur = "";
 

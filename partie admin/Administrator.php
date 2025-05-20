@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
-include 'db_connection.php';
+include(__DIR__ . '/../db_connection.php');
 session_start(); // Démarrer la session
 
 // Définir une variable pour les messages d'erreur
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifier que les champs ne sont pas vides
     if (empty($_POST['email']) || empty($_POST['password'])) {
         $error_message = "Veuillez entrer l'adresse email et le mot de passe.";
-    } else {
+    } else {  
         // Récupérer les données du formulaire
         $email = $_POST['email'];
         $password = $_POST['password'];
