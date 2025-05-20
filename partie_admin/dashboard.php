@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['role'])) {
-    header("Location: login.php");
+    header("Location: ../partie_admin/login.php");
     exit;
 }
 $role = $_SESSION['role'];

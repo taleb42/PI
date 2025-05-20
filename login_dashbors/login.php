@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($admin && password_verify($mot_de_passe, $admin['password'])) {
         $_SESSION['id'] = $admin['id_admin'];
         $_SESSION['role'] = "admin";
-        header("Location: dashboard.php");
+        header("Location: login_dashbors.php");
         exit;
     }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($client && password_verify($mot_de_passe, $client['password'])) {
         $_SESSION['id'] = $client['id_client'];
         $_SESSION['role'] = "client";
-        header("Location: dashboard.php");
+        header("Location: login_dashbors.php");
         exit;
     }
 
