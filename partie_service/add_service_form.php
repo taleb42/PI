@@ -47,11 +47,14 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+  
+
     </style>
 </head>
 <body>
 <div class="form-container">
     <h2>Ajouter un nouveau service</h2>
+    
     <form action="insert_service.php" method="POST">
         
             <input type="text" name="nom_service" placeholder="Nom du service" required>

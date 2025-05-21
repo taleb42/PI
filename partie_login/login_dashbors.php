@@ -83,8 +83,8 @@ $role = $_SESSION['role'];
     <?php elseif ($role === 'client'): ?>
         <div class="section-title">Espace Client</div>
         <ul>
-            <li><a href="../partie_demandes/voir_demandes.php">Voir mes demandes</a></li>
-            <li><a href="../partie_demandes/nouvelle_demande.php">Nouvelle demande</a></li>
+            
+            <li><a href="../partie_client/nouvelle_demande.php">Nouvelle demande</a></li>
         </ul>
     <?php endif; ?>
 </div>
