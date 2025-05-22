@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include('../db_connection.php');
@@ -36,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             justify-content: center;
             align-items: center;
             height: 100vh;
+            text-align: center;
         }
 
         .login-box {
@@ -77,6 +77,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             color: red;
             text-align: center;
         }
+        .signup-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+
+    }
     </style>
 </head>
 <body>
@@ -87,7 +101,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="email" name="email" placeholder="Email client" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
+         <div class="signup-link">
+        Pas encore de compte ?
+        <a href="signup.php">Créer un compte</a>
+    </div>
         <?php if (isset($erreur)) echo "<div class='error'>$erreur</div>"; ?>
+
+       </div>
+           
+           
+
+            
     </form>
 </div>
 

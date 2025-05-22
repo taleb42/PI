@@ -1,4 +1,4 @@
-<?php
+3<?php
 session_start();
 $error_message = isset($_GET['error']) ? htmlspecialchars(urldecode($_GET['error'])) : '';
 $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['success'])) : '';
@@ -138,7 +138,7 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
             <button type="submit" id="create-account-btn" disabled class="btn">Create Account</button>
         </form>
         <p class="mt-5 text-center text-sm text-gray-600">
-            Already have an account? <a href="Client.php" class="link">Sign in</a>
+            Already have an account? <a href="login_client.php" class="link">Sign in</a>
         </p>
     </div>
 
