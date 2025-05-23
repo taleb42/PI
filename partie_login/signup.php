@@ -1,4 +1,5 @@
-3<?php
+<?php
+include(__DIR__ . '/../db_connection.php');
 session_start();
 $error_message = isset($_GET['error']) ? htmlspecialchars(urldecode($_GET['error'])) : '';
 $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['success'])) : '';
@@ -107,21 +108,21 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
             <div class="text-green-600 text-center mb-4"><?php echo $success_message; ?></div>
         <?php endif; ?>
 
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6"><p>Create Account - <i>Khadamati</i></p></h1>
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6"><p>Creer compte - Khadamati</p></h1>
         
         <form id="create-account-form" class="space-y-5" method="POST" action="insert_client.php">
             <div class="form-group">
-                <label for="name">Full Name</label>
+                <label for="name">Nom Complet :</label>
                 <input type="text" id="name" name="name" placeholder="Enter your full name" required class="input-field">
                 <div id="name-error" class="error">Full name must be at least 2 characters long.</div>
             </div>
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label for="email">Email :</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required class="input-field">
                 <div id="email-error" class="error">Please enter a valid email address.</div>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required class="input-field">
                 <div id="password-error" class="error">Password must be at least 8 characters long and contain letters and numbers.</div>
             </div>
@@ -132,13 +133,13 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
             </div>
             <div class="checkbox-container">
                 <input type="checkbox" id="terms" name="terms">
-                <label for="terms">I agree to the <a href="#" class="link">Terms of Service</a></label>
-                <div id="terms-error" class="error">You must agree to the Terms of Service.</div>
+                <label for="terms">je confirmer <a href="#" class="link">clicker ici</a></label>
+                <div id="terms-error" class="error">tu a confirmer.</div>
             </div>
-            <button type="submit" id="create-account-btn" disabled class="btn">Create Account</button>
+            <input type="submit" id="create-account-btn" disabled class="btn">creer compte</input>
         </form>
         <p class="mt-5 text-center text-sm text-gray-600">
-            Already have an account? <a href="login_client.php" class="link">Sign in</a>
+           Tu a deja un compte? <a href="login_client.php" class="link">connecter</a>
         </p>
     </div>
 
