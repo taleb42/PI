@@ -1,0 +1,62 @@
+
+/* Navbar updates */
+.navbar {
+    padding: 1rem 5%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.navbar .search-bar input {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 220px;
+}
+
+/* Hero spacing from top and bottom */
+.carousel {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.carousel-item img {
+    height: 60vh;
+    object-fit: cover;
+}
+
+/* Spacing around Services section */
+.services-section {
+    padding: 60px 5% 80px;
+}
+
+/* Title size */
+.services-title {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+}
