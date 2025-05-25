@@ -1,6 +1,15 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['id_client'])) {
+    echo '<div style="text-align:center;margin-top:100px;">
+            <div style="padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:inline-block;">
+                <p style="font-size:1.2rem;">Veuillez vous connecter pour voir vos demandes.</p>
+                <a href="../login.php" style="text-decoration:none;color:#007bff;">Connexion</a>
+            </div>
+          </div>';
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -43,11 +52,11 @@ if (!isset($_SESSION['id_client'])) {
 <body>
   <div class="message">
     <h2>Veuillez vous connecter pour voir vos demandes.</h2>
-    <a href="PI/partie_login/login_client">Connexion</a>
+    <a href="partie_login/login_client">Connexion</a>
   </div>
 </body>
 </html>
 <?php
   exit();
-}
+
 ?>

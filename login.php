@@ -71,14 +71,15 @@
 
 <div class="login-container">
     <h2>Connexion Client</h2>
-    <form action="login_client.php" method="POST">
+    <form action="partie_login/login_client.php" method="POST">
         <input type="email" name="email" placeholder="Email client" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
     </form>
 
     <div class="admin-link">
-        Vous êtes un administrateur ? <a href="login_admin.php">Cliquez ici</a>
+         Pas encore de compte ?
+        <a href="signup.php">Créer un compte</a>
     </div>
 </div>
 

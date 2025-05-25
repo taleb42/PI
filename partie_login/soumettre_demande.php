@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php';
+include(__DIR__ . '/../db_connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_client = $_SESSION['id'];
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("siis", $description, $id_service, $id_client, $date_demande);
 
     if ($stmt->execute()) {
-        header("Location: voir_mes_demandes.php");
+        header("Location: conf.php");
     } else {
         echo "Erreur : " . $stmt->error;
     }

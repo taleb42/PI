@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php';
+include(__DIR__ . '/../db_connection.php');
 if (!isset($_GET['id_service'])) {
     die("Aucun service sélectionné.");
 }

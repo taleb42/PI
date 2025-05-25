@@ -1,7 +1,12 @@
 <?php
-include 'db_connection.php';
-?>
+session_start();
+include(__DIR__ . '/../db_connection.php');
 
+if (!isset($_SESSION['id'])) {
+    header('Location: login_client.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -189,8 +194,8 @@ header {
     <input type="text" placeholder="Rechercher un service...">
   </div>
         <div>
-          <button><a href="partie_login/login_client.php">Connexion</a></button>
-           <button> <a href="partie_login/signup.php">S'inscrire</a></button>
+          <button><a href="login_client.php">Connexion</a></button>
+           <button> <a href="signup.php">S'inscrire</a></button>
         </div>
     </div>
 </nav>

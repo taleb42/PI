@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../db_connection.php');
+include(__DIR__ . '/../db_connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
@@ -14,14 +14,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($client && password_verify($mot_de_passe, $client['password'])) {
         $_SESSION['id'] = $client['id_client'];
         $_SESSION['role'] = 'client';
-        header("Location: indexx.php");
+
+        // توجيه إلى الصفحة الرئيسية أو لوحة التحكم الخاصة بالعميل
+        header("Location: ../partie_login/indexx.php"); 
         exit;
     } else {
         echo "Email ou mot de passe incorrect.";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
