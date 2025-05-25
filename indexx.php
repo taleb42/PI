@@ -49,19 +49,92 @@ include 'db_connection.php';
     border: 1px solid #ccc;
     width: 220px;
 }
+header {
+  padding: 1.5rem 5%;
+  background: linear-gradient(to right, #fff, #f1f1f1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-bottom: 2px solid #ddd;
+  font-size: 1.2rem;
+}
+
+.navbar a {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.auth-buttons button {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.hero {
+  height: 80vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  bottom: 30%;
+  left: 10%;
+  text-align: left;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption p {
+  font-size: 1.5rem;
+  color: #eee;
+}
+
+.cta-button {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
 
 /* Hero spacing from top and bottom */
+.slider-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.slider-subtitle {
+  font-size: 1.4rem;
+  color: #eee;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.carousel-caption {
+  bottom: 20%;
+  left: 8%;
+  right: auto;
+  text-align: left;
+}
 
 .carousel {
   margin-top: 80px;
   margin-bottom: 40px;
 }
 
-.carousel-item img {
-  height: 70vh;
-  width: 100%;
+.carousel-item {
+  height: 75vh;
+  width: 100vw;
   object-fit: cover;
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out, opacity 0.5s ease-in-out;
 }
 
         .services-section { padding: 4rem 5%; background: #f9f9f9; }
@@ -95,6 +168,7 @@ include 'db_connection.php';
             text-decoration: none;
         }
         .service-card a:hover { background: #0056b3; }
+        
     </style>
 </head>
 <body>
@@ -123,42 +197,64 @@ include 'db_connection.php';
 
 <!-- Slider -->
 <!-- Hero Slider Start -->
+ 
 <div id="heroSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
   <div class="carousel-inner">
 
     <div class="carousel-item active">
-      <img src="images/nettoyage.jpg" class="d-block w-100" alt="Nettoyage">
+    <div class="carousel-caption d-none d-md-block text-start">
+  <h1 class="slider-title">Tous vos services à domicile</h1>
+  <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
+</div>
+      <img src="images/nett.jpg" class="d-block w-100" alt="Nettoyage">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Service de Nettoyage</h5>
+       
       </div>
     </div>
 
     <div class="carousel-item">
+      <div class="carousel-caption d-none d-md-block text-start">
+  <h1 class="slider-title">Tous vos services à domicile</h1>
+  <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
+</div>
       <img src="images/plomberie.jpg" class="d-block w-100" alt="Plomberie">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Service de Plomberie</h5>
+      
       </div>
     </div>
 
     <div class="carousel-item">
-      <img src="images/electricite.jpg" class="d-block w-100" alt="Électricité">
+      <div class="carousel-caption d-none d-md-block text-start">
+  <h1 class="slider-title">Tous vos services à domicile</h1>
+  <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
+</div>
+      <img src="images/Électricité.jpg" class="d-block w-100" alt="Électricité">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Service d'Électricité</h5>
+        
       </div>
     </div>
 
     <div class="carousel-item">
-      <img src="images/mecanique.jpg" class="d-block w-100" alt="Mécanique">
+      <div class="carousel-caption d-none d-md-block text-start">
+  <h1 class="slider-title">Tous vos services à domicile</h1>
+  <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
+</div>
+      <img src="images/Mécanique.jpg" class="d-block w-100" alt="Mécanique">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Service de Mécanique</h5>
+        
       </div>
     </div>
 
     <div class="carousel-item">
+      <div class="carousel-caption d-none d-md-block text-start">
+  <h1 class="slider-title">Tous vos services à domicile</h1>
+  <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
+</div>
       <img src="images/livraison.jpg" class="d-block w-100" alt="Livraison">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Service de Livraison</h5>
+      
       </div>
+     
     </div>
 
   </div>
