@@ -5,7 +5,7 @@ include(__DIR__ . '/../db_connection.php');
 if (!isset($_SESSION['id'])) {
     echo "<div style='margin: 50px auto; padding: 20px; max-width: 400px; background-color: #f8d7da; color: #721c24; border-radius: 6px; text-align: center; font-family: Arial;'>
             Veuillez vous connecter pour voir vos demandes.
-            <br><a href='../login.php' style='color: #721c24; font-weight: bold;'>Connexion</a>
+            <br><a href='signup.php' style='color: #721c24; font-weight: bold;'>Connexion</a>
           </div>";
     exit;
 }

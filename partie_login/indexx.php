@@ -273,7 +273,7 @@ header {
   <h1 class="slider-title">Tous vos services à domicile</h1>
   <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
 </div>
-      <img src="images/Électricité.jpg" class="d-block w-100" alt="Électricité">
+      <img src="images/Electricite.jpg" class="d-block w-100" alt="Électricité">
       <div class="carousel-caption d-none d-md-block">
         
       </div>
@@ -284,7 +284,7 @@ header {
   <h1 class="slider-title">Tous vos services à domicile</h1>
   <p class="slider-subtitle">Réparations, nettoyage, plomberie, électricité et plus encore.</p>
 </div>
-      <img src="images/Mécanique.jpg" class="d-block w-100" alt="Mécanique">
+      <img src="images/Mecanique.jpg" class="d-block w-100" alt="Mécanique">
       <div class="carousel-caption d-none d-md-block">
         
       </div>
