@@ -70,6 +70,7 @@
 <body>
 
 <div class="login-container">
+    <img src="images/logok.jpg" alt="Khadamati Logo" class="h-10">
     <h2>Connexion Client</h2>
     <form action="partie_login/login_client.php" method="POST">
         <input type="email" name="email" placeholder="Email client" required>

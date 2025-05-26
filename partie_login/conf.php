@@ -44,7 +44,7 @@ $result = $stmt->get_result();
             text-align: center;
         }
         .message {
-            padding: 12px;
+            padding: 30px;
             background-color: #d4edda;
             color: #155724;
             border-radius: 5px;
@@ -68,23 +68,10 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>
+    <center>
     <div class="container">
-        <div class="message">Votre demande a été envoyée avec succès.</div>
-        <h2>Mes Demandes</h2>
-        <table>
-            <tr>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Statut</th>
-            </tr>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['description']); ?></td>
-                    <td><?php echo htmlspecialchars($row['date_demande']); ?></td>
-                    <td><?php echo htmlspecialchars($row['statut']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </table>
-    </div>
+        <div class="message"><B>Demande Envoyée<B><br><br>
+            Votre demande a été envoyée avec succès.</div>
+    </center>
 </body>
 </html>

@@ -2,10 +2,7 @@
 session_start();
 include(__DIR__ . '/../db_connection.php');
 
-if (!isset($_SESSION['id'])) {
-    header('Location: login_client.php');
-    exit();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,7 +12,7 @@ if (!isset($_SESSION['id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        * Navbar updates */
+         Navbar updates */
 .navbar {
     padding: 1rem 5%;
     background-color: #ffffff;
@@ -108,6 +105,45 @@ header {
   border-radius: 6px;
   color: white;
 }
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline-success {
+    background-color: transparent;
+    color: #28a745;
+    border: 2px solid #28a745;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-success:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.9;
+}
 
 /* Hero spacing from top and bottom */
 .slider-title {
@@ -187,17 +223,21 @@ header {
   <nav>
     <a href="#">Accueil</a>
     <a href="#">Services</a>
-    <a href="#">À propos</a>
     <a href="#">Contact</a>
   </nav>
   <div class="search-bar">
-    <input type="text" placeholder="Rechercher un service...">
+    <input type="text" placeholder="Rechercher un service..">
   </div>
-        <div>
-          <button><a href="login_client.php">Connexion</a></button>
-           <button> <a href="signup.php">S'inscrire</a></button>
-        </div>
-    </div>
+  
+      <div class="auth-buttons">
+    <?php if (isset($_SESSION['id']) && $_SESSION['role'] == 'client'): ?>
+        <button onclick="location.href='soumettre_demande.php'" class="btn btn-primary">Demander un service</button>
+        <button onclick="location.href='voir_mes_demandes.php'" class="btn btn-secondary">Mes demandes</button>
+    <?php else: ?>
+        <button onclick="location.href='login_client.php'" class="btn btn-outline-primary">Connexion</button>
+        <button onclick="location.href='signup.php'" class="btn btn-outline-success">S'inscrire</button>
+    <?php endif; ?>
+</div>
 </nav>
 
 <!-- Slider -->
