@@ -1,9 +1,11 @@
 
+@import url('style/css/theme.css');
+
 /* Navbar updates */
 .navbar {
     padding: 1rem 5%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    background-color: white;
+    box-shadow: 0 2px 4px var(--card-shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,9 +29,15 @@
 .navbar nav a {
     margin: 0 1rem;
     text-decoration: none;
-    color: #333;
+    color: var(--text-primary);
     font-size: 1.1rem;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: var(--accent-primary);
+    opacity: 0.9;
 }
 
 .navbar .search-bar input {

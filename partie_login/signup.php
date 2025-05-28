@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../db_connection.php');
+require_once '../include/db_config.php';
 session_start();
 $error_message = isset($_GET['error']) ? htmlspecialchars(urldecode($_GET['error'])) : '';
 $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['success'])) : '';

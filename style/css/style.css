@@ -1,12 +1,15 @@
+@import url('theme.css');
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f6f6f6;
-  color: #333;
+  background: var(--background-main);
+  color: var(--text-primary);
 }
 
 header {
-  background-color: whitesmoke;
+  background-color: white;
+  box-shadow: 0 2px 4px var(--card-shadow);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,4 +98,4 @@ header nav a {
 .card p {
   font-size: 14px;
   color: #666;
-}/* Styles généraux */
+}
