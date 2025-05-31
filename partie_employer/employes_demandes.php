@@ -260,10 +260,10 @@ if ($result) {
                 <p>Vue d'ensemble des employés et leurs commandes</p>
             </div>
             <div>
-                <a href="export.php" class="export-btn">
-                    <i class="fas fa-download"></i>
-                    Exporter les données
-                </a>
+                <a href="../partie_admin/dashbord.php" class="export-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour au tableau de bord
+            </a>
             </div>
         </div>
 

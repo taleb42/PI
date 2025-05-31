@@ -33,7 +33,7 @@ function register_client($email, $password, $nom = null) {
     if ($check_result->num_rows > 0) {
         return [
             'success' => false,
-            'message' => 'Email already in use'
+            'message' => 'Cette adresse e-mail est déjà utilisée'
         ];
     }
 
@@ -46,12 +46,12 @@ function register_client($email, $password, $nom = null) {
         return [
             'success' => true,
             'client_id' => $conn->insert_id,
-            'message' => 'Client registered successfully'
+            'message' => 'Client enregistré avec succès'
         ];
     } else {
         return [
             'success' => false,
-            'message' => 'Registration failed: ' . $stmt->error
+            'message' => 'Échec de l\'inscription : ' . $stmt->error
         ];
     }
 }
@@ -73,7 +73,7 @@ function register_admin($email, $password) {
     if ($check_result->num_rows > 0) {
         return [
             'success' => false,
-            'message' => 'Email already in use'
+            'message' => 'Cette adresse e-mail est déjà utilisée'
         ];
     }
 
@@ -86,12 +86,12 @@ function register_admin($email, $password) {
         return [
             'success' => true,
             'admin_id' => $conn->insert_id,
-            'message' => 'Administrator registered successfully'
+            'message' => 'Administrateur enregistré avec succès'
         ];
     } else {
         return [
             'success' => false,
-            'message' => 'Registration failed: ' . $stmt->error
+            'message' => 'Échec de l\'inscription : ' . $stmt->error
         ];
     }
 }
@@ -100,40 +100,23 @@ function register_admin($email, $password) {
 function login_client($email, $password) {
     global $conn;
     
-    // Clean the input data
     $email = clean_input($email);
     
-    // Prepare query
-    $sql = "SELECT * FROM client WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
+    $stmt = $conn->prepare("SELECT * FROM client WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if ($result->num_rows === 1) {
-        $client = $result->fetch_assoc();
-        
-        // Simple password comparison (no hashing)
-        if ($password === $client['password']) {
-            // Set session variables
-            $_SESSION['user_id'] = $client['id'];
-            $_SESSION['user_type'] = 'client';
-            $_SESSION['is_verified'] = true; // Since new DB doesn't have verification system
-
-            // Remove sensitive data
-            unset($client['password']);
-
-            return [
-                'success' => true,
-                'client' => $client,
-                'message' => 'Login successful'
-            ];
-        }
+        return [
+            "success" => true,
+            "message" => "Connexion réussie"
+        ];
     }
-
+    
     return [
-        'success' => false,
-        'message' => 'Invalid email or password'
+        "success" => false,
+        "message" => "Adresse e-mail ou mot de passe invalide"
     ];
 }
 

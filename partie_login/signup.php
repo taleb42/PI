@@ -34,9 +34,8 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
                 <label for="name" class="block font-semibold">Nom complet</label>
                 <input type="text" id="nom" name="nom" required class="w-full px-4 py-2 border rounded-lg" placeholder="Votre nom">
             </div>
-            <div>
-                <label for="email" class="block font-semibold">Email</label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded-lg" placeholder="example@mail.com">
+            <div>                <label for="email" class="block font-semibold">Adresse e-mail</label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded-lg" placeholder="exemple@mail.com">
             </div>
             <div>
                 <label for="password" class="block font-semibold">Mot de passe</label>
@@ -57,15 +56,17 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
             Vous avez déjà un compte ?
             <a href="login_client.php" class="text-blue-500 underline">Connexion</a>
         </p>
-    </div>
-
-    <script>
+    </div>    <script>
         document.getElementById("form").addEventListener("submit", function(e) {
             const pass = document.getElementById("password").value;
             const confirm = document.getElementById("confirm-password").value;
             if (pass !== confirm) {
                 e.preventDefault();
-                alert("Les mots de passe ne correspondent pas !");
+                alert("Les mots de passe ne correspondent pas ! Veuillez réessayer.");
+            }
+            if (pass.length < 6) {
+                e.preventDefault();
+                alert("Le mot de passe doit contenir au moins 6 caractères.");
             }
         });
     </script>

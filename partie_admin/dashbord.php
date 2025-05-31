@@ -4,7 +4,7 @@ include_once '../include/db_config.php';
 include_once '../include/dashboard_stats.php';
 
 if (!isset($_SESSION['role'])) {
-    header("Location: login.php");
+    header("Location: ../partie_login/login_admin.php");
     exit;
 }
 
@@ -195,9 +195,7 @@ if ($role === 'admin') {
         }
     </style>
 </head>
-<body>
-
-    <!-- Sidebar -->
+<body>    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <h1>Khadamati</h1>
@@ -206,6 +204,10 @@ if ($role === 'admin') {
             <a href="dashbord.php" class="menu-item">
                 <i class="fas fa-home"></i>
                 Tableau de bord
+            </a>
+            <a href="../partie_login/indexx.php" class="menu-item">
+                <i class="fas fa-globe"></i>
+                Site Principal
             </a>
             <?php if ($role === 'admin'): ?>
                 

@@ -8,11 +8,12 @@ $message = "";
 
 try {
     $nom = $_POST['nom'];
+    $tel = $_POST['tel'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$stmt = $conn->prepare("INSERT INTO administrateur (nom, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $nom, $email, $password);
-$stmt->execute();
+    $stmt = $conn->prepare("INSERT INTO administrateur (nom, tel, email, password) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nom, $tel, $email, $password);
+    $stmt->execute();
     $succes = true;
     $message = "L'administrateur a été ajouté avec succès.";
 } catch (Exception $e) {

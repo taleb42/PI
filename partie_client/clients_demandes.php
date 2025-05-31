@@ -138,12 +138,11 @@ if ($result) {
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 30px;
-        }
-
-        .filters form {
+        }        .filters form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 20px;
+            align-items: end;
         }
 
         .filter-group {
@@ -152,15 +151,43 @@ if ($result) {
         }
 
         .filter-group label {
-            margin-bottom: 5px;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2C3E50;
+            font-size: 0.9rem;
         }
 
         .filter-group input,
         .filter-group select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: #2C3E50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+        }
+
+        .filter-group button {
+            padding: 10px 20px;
+            background: #2C3E50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group button:hover {
+            background: rgb(8, 192, 155);
+            transform: translateY(-1px);
         }
 
         .client-card {
@@ -219,7 +246,7 @@ if ($result) {
         .status-terminee { background: #c3e6cb; color: #155724; }
         .status-annulee { background: #f5c6cb; color: #721c24; }
 
-        .export-btn {
+        .back-button{
             padding: 10px 20px;
             background: #2C3E50;
             color: white;
@@ -232,8 +259,8 @@ if ($result) {
             gap: 8px;
         }
 
-        .export-btn:hover {
-            background: #1ABC9C;
+        .back-button:hover {
+            background:rgb(8, 192, 155);
         }
 
         @media (max-width: 768px) {
@@ -252,10 +279,10 @@ if ($result) {
                 <p>Vue d'ensemble des clients et leurs demandes</p>
             </div>
             <div>
-                <a href="export_clients.php" class="export-btn">
-                    <i class="fas fa-download"></i>
-                    Exporter les données
-                </a>
+               <a href="../partie_admin/dashbord.php" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Retour au tableau de bord
+            </a>
             </div>
         </div>
 

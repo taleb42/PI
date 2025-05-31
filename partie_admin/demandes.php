@@ -14,8 +14,8 @@ $sql = "SELECT
             d.statut,
             d.date_demande,
             d.date_execution,
+            d.adresse,
             s.nom_service,
-            s.categorie,
             c.nom as client_nom,
             e.nom as employe_nom,
             a.nom as admin_nom
@@ -215,33 +215,33 @@ function getStatusLabel($statut) {
 
         <?php if (!empty($demandes)): ?>
             <table class="demandes-table">
-                <thead>
-                    <tr>
+                <thead>                    <tr>
                         <th>Service</th>
-                        <th>Catégorie</th>
                         <th>Client</th>
+                        <th>Adresse</th>
                         <th>Employé</th>
                         <th>Administrateur</th>
                         <th>Date de demande</th>
-                        <th>Statut</th>
                         <th>Description</th>
+                         <th>Statut</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($demandes as $demande): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($demande['nom_service']); ?></td>
-                            <td><?php echo htmlspecialchars($demande['categorie']); ?></td>
                             <td><?php echo htmlspecialchars($demande['client_nom']); ?></td>
+                            <td><?php echo htmlspecialchars($demande['adresse']); ?></td>
                             <td><?php echo $demande['employe_nom'] ? htmlspecialchars($demande['employe_nom']) : 'Non assigné'; ?></td>
                             <td><?php echo $demande['admin_nom'] ? htmlspecialchars($demande['admin_nom']) : 'Non validé'; ?></td>
                             <td><?php echo date('d/m/Y H:i', strtotime($demande['date_demande'])); ?></td>
+                           
+                            <td><?php echo htmlspecialchars($demande['demande_description']); ?></td>
                             <td>
                                 <span class="status-badge <?php echo getStatusClass($demande['statut']); ?>">
                                     <?php echo getStatusLabel($demande['statut']); ?>
                                 </span>
                             </td>
-                            <td><?php echo htmlspecialchars($demande['demande_description']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

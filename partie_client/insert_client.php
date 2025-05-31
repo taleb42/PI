@@ -9,7 +9,7 @@ $message = "";
 try {
     $nom = $_POST['nom'];
 $email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = $_POST['password']; // Suppression du hachage du mot de passe
 $stmt = $conn->prepare("INSERT INTO client (nom, email, password) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $nom, $email, $password);
 $stmt->execute();

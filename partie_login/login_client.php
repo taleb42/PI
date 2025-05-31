@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'];
 
     
-    // Validate input
+    // Valider les entrées
     if (!is_valid_email($email)) {
-        $error_message = "Please enter a valid email address";
+        $error_message = "Veuillez entrer une adresse e-mail valide";
     } elseif (strlen($password) < 6) {
-        $error_message = "Password must be at least 6 characters";
+        $error_message = "Le mot de passe doit contenir au moins 6 caractères";
     } else {
         // Attempt to login
         $result = login_client($email, $password);
@@ -50,11 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Login | Login and Verification System</title>
+    <title>Connexion Client | Khadamati</title>
     <link rel="stylesheet" href="log/styles.css">
 </head>
 <body>
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
                 <h1 class="form-title">Khadamati</h1>
-                <p class="form-description">Login to access your account.</p>
+                <p class="form-description">Connectez-vous à votre compte client</p>
             </div>
             
             <div id="alertContainer">
@@ -84,15 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             <form id="clientLoginForm" method="POST" action="">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" autocomplete="email" required>
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" placeholder="votre.email@exemple.com" autocomplete="email" required>
                     <small id="emailError" class="text-danger"></small>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">mote de passe</label>
+                    <label for="password">Mot de passe</label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
                         <button type="button" class="password-toggle">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -103,14 +103,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <small id="passwordError" class="text-danger"></small>
                 </div>
                 
-                <button type="submit" class="btn btn-block">Login</button>
+                <button type="submit" class="btn btn-block">Se connecter</button>
             </form>
             
-            <div class="separator">OR</div>
+            <div class="separator">OU</div>
             
             <div class="d-flex justify-between">
-                <a href="signup.php" class="btn-link">creer un compte</a>
-                <a href="#" class="btn-link">Forgot Password?</a>
+                <a href="signup.php" class="btn-link">Créer un compte</a>
+                <a href="#" class="btn-link">Mot de passe oublié ?</a>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">&copy; <?php echo date('Y'); ?> Login and Verification System</p>
+                <p class="footer-text">&copy; <?php echo date('Y'); ?> Khadamati - Système d'authentification</p>
             </div>
         </div>
     </footer>

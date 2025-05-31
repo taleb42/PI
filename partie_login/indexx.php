@@ -12,9 +12,7 @@ require_once '../include/db_config.php';
   <title>Khadamati</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <
 </head>
-
 <body>
   <header>
    <div class="logo">
@@ -83,21 +81,18 @@ require_once '../include/db_config.php';
       <div class="platform-info">
         <div class="info-card">
           <i class="fas fa-bullseye"></i>
-          <h3>Notre Mission</h3>
-          <p>Simplifier l'accès aux services publics en fournissant une plateforme numérique unifiée qui connecte les citoyens aux
-            services gouvernementaux essentiels.</p>
+          <h3>Faciliter l'Accès</h3>
+          <p>Nous connectons les citoyens aux services essentiels pour simplifier leur quotidien.</p>
         </div>
         <div class="info-card">
           <i class="fas fa-hand-holding-heart"></i>
-          <h3>Ce que nous offrons</h3>
-          <p>Des rendez-vous médicaux à l'inscription scolaire, des paiements de services publics aux services de transport - tout est
-            accessible via une seule plateforme pratique.</p>
+          <h3>Nos Solutions</h3>
+          <p>De la santé à l'éducation, nous offrons des services pratiques et accessibles en un clic.</p>
         </div>
         <div class="info-card">
           <i class="fas fa-users"></i>
-          <h3>Pour tous</h3>
-          <p>Conçu pour tous les citoyens, rendant les services gouvernementaux accessibles, efficaces et conviviaux pour
-            tous.</p>
+          <h3>Inclusivité</h3>
+          <p>Une plateforme pensée pour tous, favorisant l'accès équitable aux services publics.</p>
         </div>
       </div>
     </div>
