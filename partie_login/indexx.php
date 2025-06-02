@@ -38,42 +38,7 @@ require_once '../include/db_config.php';
 </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-slider">
-      <div class="slide active" style="background-image: url('images/livraison.jpg');">
-        <div class="slide-content">
-          <div class="hero-content">
-            <h1>Services Publics Simplifiés</h1>
-            <p>Votre guichet unique pour tous les services administratifs</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide" style="background-image: url('images/servic.jpg');">
-        <div class="slide-content">
-          <div class="hero-content">
-            <h1>Rapidité et Efficacité</h1>
-            <p>Gagnez du temps avec nos services en ligne</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide" style="background-image: url('images/service2.webp');">
-        <div class="slide-content">
-          <div class="hero-content">
-            <h1>Innovation Digitale</h1>
-            <p>Des services modernes pour une administration efficace</p>
-          </div>
-        </div>
-      </div>
-      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1350&q=80');">
-        <div class="slide-content">
-          <div class="hero-content">
-            <h1>À Votre Service</h1>
-            <p>Des solutions adaptées à vos besoins</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+     
 
   <section class="about-platform" id="about">
     <div class="container">
