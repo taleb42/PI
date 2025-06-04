@@ -1,0 +1,204 @@
+  
+        /* General Styles */
+ body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.7; }
+        
+.navbar {
+    padding: 2rem 2%;
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+ .logok {
+    height: 15px;
+ }
+
+.navbar .logok {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navbar .logok img {
+    height: 15px;
+    margin-right: 15px;
+}
+
+.navbar nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.navbar .search-bar input {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 220px;
+}
+header {
+  padding: 1.5rem 5%;
+  background: linear-gradient(to right, #fff, #f1f1f1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-bottom: 2px solid #ddd;
+  font-size: 1.2rem;
+}
+
+.navbar a {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.auth-buttons button {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.hero {
+  height: 80vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  bottom: 30%;
+  left: 10%;
+  text-align: left;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption p {
+  font-size: 1.5rem;
+  color: #eee;
+}
+
+.cta-button {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+}
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline-success {
+    background-color: transparent;
+    color: #28a745;
+    border: 2px solid #28a745;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-success:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Hero spacing from top and bottom */
+.slider-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.slider-subtitle {
+  font-size: 1.4rem;
+  color: #eee;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.carousel-caption {
+  bottom: 20%;
+  left: 8%;
+  right: auto;
+  text-align: left;
+}
+
+.carousel {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.carousel-item {
+  height: 75vh;
+  width: 100vw;
+  object-fit: cover;
+  transition: transform 0.6s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+        .services-section { padding: 4rem 5%; background: #f9f9f9; }
+        .services-title { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; }
+
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover { transform: translateY(-5px); }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-card-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: #555; margin-bottom: 1.5rem; }
+        .service-card a {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: #007bff;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .service-card a:hover { background: #0056b3; }
+        

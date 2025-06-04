@@ -28,12 +28,12 @@
         .form-container {
             background-color: #ffffff;
             padding: 25px 35px;
-            border-radius: 12px;
+            border-radius: 14px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
                         0 10px 15px rgba(0, 0, 0, 0.1);
-            width: 450px;
-            max-width: 95%;
-            max-height: 95vh;
+            width: 600px;
+            max-width: 90%;
+            max-height: 89vh;
             overflow-y: auto;
         }
 

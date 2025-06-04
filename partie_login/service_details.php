@@ -61,17 +61,18 @@ $service = $result->fetch_assoc();
             margin-bottom: 8px;
         }
         textarea, input[type="text"] {
-            width: 100%;
+            width: 98%;
             padding: 12px;
             margin-bottom: 20px;
             border: 2px solid #e9ecef;
             border-radius: 8px;
             font-size: 15px;
             transition: border-color 0.3s ease;
+            border-color: grey;
         }
         textarea:focus, input[type="text"]:focus {
             outline: none;
-            border-color: #007bff;
+            border-color:black;
         }
         .file-input-container {
             margin-bottom: 20px;
@@ -98,7 +99,7 @@ $service = $result->fetch_assoc();
         button {
             background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
-            padding: 12px 25px;
+            padding: 13px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -123,7 +124,7 @@ $service = $result->fetch_assoc();
             display: flex;
             align-items: center;
             padding: 10px 15px;
-            background:rgb(25, 50, 76);
+            background:  linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
@@ -141,12 +142,21 @@ $service = $result->fetch_assoc();
         body {
             position: relative;
         }
+        .logok {
+            text-align: center;
+            margin-bottom: 19px;
+            width: 10px;
+        }   
     </style>
 </head>
 <body>
     <a href="indexx.php" class="back-link">Retour à l'accueil</a>
     
     <div class="container">
+      <div class="logok">
+      <img src="images/logok.jpg" alt="Khadamati Logo">
+
+    </div>
         <h2><?= htmlspecialchars($service['nom_service']) ?></h2>
 
         <div class="info">
@@ -158,18 +168,20 @@ $service = $result->fetch_assoc();
         <form action="soumettre_demande.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_service" value="<?= $service['id_service'] ?>">
 
-            <label for="details">Décrivez votre besoin <span class="required">*</span></label>
+            <label for="details">Décrivez votre besoin: <span class="required">*</span></label>
             <textarea name="description" id="details" required 
                 placeholder="Décrivez en détail votre besoin pour que nous puissions mieux vous aider..." 
                 rows="5"></textarea>
 
-            <label for="adresse">Votre adresse complète <span class="required">*</span></label>
+            <label for="adresse">Votre adresse complète: <span class="required">*</span></label>
             <input type="text" name="adresse" id="adresse" required 
-                placeholder="Numéro, rue, quartier, ville...">
-
+                placeholder="Rue, quartier, ville...">
+<label for="num">Votre Numero Telephone: <span class="required">*</span></label>
+            <input type="text" name="num" id="num" required 
+                placeholder="votre numero">
             <div class="file-input-container">
                 <label>
-                    Photo du problème
+                    Photo du problème:
                     <span class="optional-text">(optionnel)</span>
                 </label>
                 <label for="photo" class="file-input-label">
