@@ -303,4 +303,17 @@ function logout_user() {
         'message' => 'Logged out successfully'
     ];
 }
+
+// Fonction pour récupérer les demandes en attente
+function getDemandesEnAttente($conn) {
+    $sql = "SELECT d.id_demande, d.description, d.date_demande, d.adresse, d.statut, s.nom_service, c.nom as client_nom FROM Demande d LEFT JOIN Service s ON d.id_service = s.id_service LEFT JOIN Client c ON d.id_client = c.id_client WHERE d.statut = 'en_attente' ORDER BY d.date_demande DESC";
+    $result = $conn->query($sql);
+    $demandes = [];
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $demandes[] = $row;
+        }
+    }
+    return $demandes;
+}
 ?>

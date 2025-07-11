@@ -130,7 +130,7 @@
 <body>
 <div class="form-container">
     <h2>Ajouter un nouveau service</h2>
-    <form action="insert_service.php" method="POST">
+    <form action="insert_service.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nom_service">Nom du service</label>
             <input type="text" id="nom_service" name="nom_service" placeholder="Entrez le nom du service" required>
@@ -141,7 +141,14 @@
         </div>
         <div class="form-group">
             <label for="id_categorie">Catégorie</label>
-            <input type="number" id="id_categorie" name="id_categorie" placeholder="ID de la catégorie" required>
+            <select id="id_categorie" name="id_categorie" required>
+                <?php
+                include_once '../include/db_config.php';
+                $catres = $conn->query("SELECT id_categorie, nom_categorie FROM categorie");
+                while ($cat = $catres->fetch_assoc()): ?>
+                    <option value="<?= $cat['id_categorie'] ?>"><?= htmlspecialchars($cat['nom_categorie']) ?></option>
+                <?php endwhile; ?>
+            </select>
         </div>
         <div class="form-group">
             <label for="prix">Prix</label>
@@ -154,6 +161,10 @@
         <div class="form-group">
             <label for="id_admin">Administrateur</label>
             <input type="number" id="id_admin" name="id_admin" placeholder="ID de l'administrateur" required>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo du service</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
         </div>
         <input type="submit" value="Ajouter le service">
     </form>

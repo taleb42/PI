@@ -2,6 +2,7 @@
 session_start();
 include_once '../include/db_config.php';
 include_once '../include/dashboard_stats.php';
+include_once '../include/functions.php';
 
 if (!isset($_SESSION['role'])) {
     header("Location: ../partie_login/login_admin.php");
@@ -11,16 +12,11 @@ if (!isset($_SESSION['role'])) {
 $role = $_SESSION['role'];
 $stats = getDashboardStats($conn);
 
-// Récupérer les notifications
-$notifications = [];
+
+// Récupérer les demandes en attente pour l'admin
+$demandes_en_attente = [];
 if ($role === 'admin') {
-    $sql = "SELECT * FROM notifications WHERE is_read = 0 ORDER BY created_at DESC LIMIT 5";
-    $result = $conn->query($sql);
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $notifications[] = $row;
-        }
-    }
+    $demandes_en_attente = getDemandesEnAttente($conn);
 }
 ?>
 
@@ -193,6 +189,47 @@ if ($role === 'admin') {
         .action-button i {
             margin-right: 8px;
         }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-accepter {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .btn-refuser {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>    <!-- Sidebar -->
@@ -273,28 +310,6 @@ if ($role === 'admin') {
                     <div class="stat-value"><?php echo $stats['commandes']; ?></div>
                 </div>
             </div>
-
-            <!-- Notifications -->
-            <div class="notifications-container">
-                <h3><i class="fas fa-bell"></i> Notifications récentes</h3>
-                <?php if (!empty($notifications)): ?>
-                    <?php foreach ($notifications as $notif): ?>
-                        <div class="notification-item">
-                            <div class="notification-icon">
-                                <i class="fas fa-info"></i>
-                            </div>
-                            <div class="notification-content">
-                                <div class="notification-title"><?php echo htmlspecialchars($notif['title']); ?></div>
-                                <div class="notification-text"><?php echo htmlspecialchars($notif['message']); ?></div>
-                                <div class="notification-time"><?php echo date('d/m/Y H:i', strtotime($notif['created_at'])); ?></div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>Aucune nouvelle notification</p>
-                <?php endif; ?>
-            </div>
-
             <!-- Actions Container -->
             <div class="actions-container">
                 <h3>Actions rapides</h3>
@@ -320,6 +335,45 @@ if ($role === 'admin') {
                         Ajouter un client
                     </a>
                 </div>
+            </div>
+
+            <!-- Demandes en attente -->
+            <div class="actions-container" style="margin-top:30px;">
+                <h3><i class="fas fa-hourglass-half"></i> Nouvelles demandes de service en attente</h3>
+                <?php if (!empty($demandes_en_attente)): ?>
+                    <table style="width:100%;margin-top:15px;background:white;border-radius:8px;overflow:hidden;">
+                        <thead>
+                            <tr style="background:#f8f9fa;">
+                                <th style="padding:10px;">Service</th>
+                                <th style="padding:10px;">Client</th>
+                                <th style="padding:10px;">Adresse</th>
+                                <th style="padding:10px;">Description</th>
+                                <th style="padding:10px;">Date</th>
+                                <th style="padding:10px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($demandes_en_attente as $demande): ?>
+                                <tr>
+                                    <td style="padding:10px;"><?= htmlspecialchars($demande['nom_service']) ?></td>
+                                    <td style="padding:10px;"><?= htmlspecialchars($demande['client_nom']) ?></td>
+                                    <td style="padding:10px;"><?= htmlspecialchars($demande['adresse']) ?></td>
+                                    <td style="padding:10px;"><?= htmlspecialchars($demande['description']) ?></td>
+                                    <td style="padding:10px;"><?= date('d/m/Y H:i', strtotime($demande['date_demande'])) ?></td>
+                                    <td style="padding:10px;">
+                                        <form action="traiter_demande.php" method="POST" style="display:inline;">
+                                            <input type="hidden" name="id_demande" value="<?= $demande['id_demande'] ?>">
+                                            <button type="submit" name="action" value="accepter" style="background:#2ecc71;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;margin-right:5px;">✅ Accepter</button>
+                                            <button type="submit" name="action" value="refuser" style="background:#e74c3c;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;">❌ Refuser</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p style="padding:20px;text-align:center;color:#666;">Aucune nouvelle demande en attente</p>
+                <?php endif; ?>
             </div>
 
         <?php elseif ($role === 'client'): ?>
