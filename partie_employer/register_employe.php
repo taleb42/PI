@@ -1,34 +1,31 @@
-
 <?php
 $message = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = new mysqli("localhost", "root", "", "khadamati");
-    if ($conn->connect_error) {
-        die("Erreur de connexion : " . $conn->connect_error);
-    }
+$conn = new mysqli("localhost", "root", "", "khadamati");
+if ($conn->connect_error) {
+    die("Erreur de connexion : " . $conn->connect_error);
+}
 
-    $nom = $_POST["nom"];
-    $email = $_POST["email"];
-    $motdepasse = $_POST["motdepasse"];
-    $specialite = $_POST["specialite"];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nom = $_POST['nom'];
+    $email = $_POST['email'];
+    $motdepasse = $_POST['motdepasse'];
+    $specialite = $_POST['specialite'];
+    $id_service = $_POST['id_service'];
 
-    // Vérifier si l'email existe déjà
-    $check = $conn->prepare("SELECT * FROM employe WHERE email = ?");
-    $check->bind_param("s", $email);
-    $check->execute();
-    $res = $check->get_result();
-    if ($res->num_rows > 0) {
-        $message = "Cet email est déjà utilisé.";
+    $stmt = $conn->prepare("SELECT id_categorie FROM service WHERE id_service = ?");
+    $stmt->bind_param("i", $id_service);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row) {
+        $id_categorie = $row['id_categorie'];
+        $insert = $conn->prepare("INSERT INTO employe (nom, email, motdepasse, specialite, id_service, id_categorie, statut) VALUES (?, ?, ?, ?, ?, ?, 'actif')");
+        $insert->bind_param("ssssii", $nom, $email, $motdepasse, $specialite, $id_service, $id_categorie);
+        $insert->execute();
+        $message = "Inscription réussie.";
     } else {
-        $sql = "INSERT INTO employe (nom, email, motdepasse, specialite) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssi", $nom, $email, $motdepasse, $specialite);  // ✅ السطر الذي كان ناقصًا
-        if ($stmt->execute()) {
-            header("Location: login_employe.php");
-            exit();
-        } else {
-            $message = "Erreur lors de l'inscription.";
-        }
+        $message = "Service invalide.";
     }
 }
 ?>
@@ -38,72 +35,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Inscription Employé</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     body {
+      background-color: #f4f6f9;
       font-family: 'Tajawal', sans-serif;
-      background-color: #f1f1f1;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-    .register-box {
+    form {
       background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      width: 600px;
-   
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 610px;
     }
-    
-    .form-label {
-      font-weight: 600;
-    }
-    .h4{
+    h2 {
       text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input, select {
+      width: 95%;
+      padding: 14px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 13px;
+      width: 98%;
+      border-radius: 4px;
+     
+      cursor: pointer;
+    }
+    .msg {
+      text-align: center;
+      color: green;
     }
   </style>
 </head>
 <body>
 
-<div class="register-box">
-  <div class="logo"></div>
-  <h4 class="mb-3"> <center>Créer un compte Employé</center></h4>
-
-  <?php if ($message): ?>
-    <div class="alert alert-danger"><?= $message ?></div>
-  <?php endif; ?>
-
-  <form  method="post">
-    <div class="mb-3">
-      <label for="nom" class="form-label">Nom complet</label>
-      <input type="text" class="form-control" name="nom" required>
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Adresse e-mail</label>
-      <input type="email" class="form-control" name="email" required>
-    </div>
-    <div class="mb-3">
-      <label for="motdepasse" class="form-label">Mot de passe</label>
-      <input type="password" class="form-control" name="motdepasse" required>
-    </div>
-    <div class="mb-3">
-      <label for="id_categorie" class="form-label">Spécialité</label>
-      <select class="form-select" name="specialite" required>
-        <option value="">-- Choisissez votre spécialité --</option>
-        <option value="1">Plomberie</option>
-        <option value="2">Électricité</option>
-        <option value="3">Mécanique</option>
-        <option value="4">Livraison</option>
-        <!-- Ajoutez ici d'autres catégories -->
-      </select>
-    </div>
-    <button type="submit" class="btn btn-success w-100">S'inscrire</button>
-  </form>
-</div>
+<form method="POST">
+  <img src="../partie_login/images/logok.jpg" alt="Logo" style="width: 180px; height: auto; margin-bottom: 10px; display: block; margin-left: 10px; margin-right: 0;">
+  <h2>Créer un compte Employé</h2>
+  <?php if (!empty($message)) echo "<p class='msg'>$message</p>"; ?>
+  <input type="text" name="nom" placeholder="Nom complet" required>
+  <input type="email" name="email" placeholder="Adresse e-mail" required>
+  <input type="password" name="motdepasse" placeholder="Mot de passe" required>
+  <input type="text" name="specialite" placeholder="Spécialité" required>
+  <select name="id_service" required>
+    <option value="">-- Choisir un service --</option>
+    <?php
+    $result = $conn->query("SELECT id_service, nom_service FROM service");
+    while ($s = $result->fetch_assoc()) {
+        echo "<option value='{$s['id_service']}'>{$s['nom_service']}</option>";
+    }
+    ?>
+  </select>
+  <button type="submit">S'inscrire</button>
+</form>
 
 </body>
 </html>

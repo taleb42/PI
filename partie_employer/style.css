@@ -1,0 +1,132 @@
+body {
+  background: linear-gradient(135deg, #00796b 0%, #26a69a 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.login-box {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  width: 350px;
+  text-align: center;
+  position: relative;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.logo {
+  width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.login-box h2 {
+  color: #00796b;
+  margin-bottom: 0.5rem;
+}
+.login-box p {
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+.login-form {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.login-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #00796b;
+  font-weight: 600;
+}
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #b2dfdb;
+  background: #f8f8f8;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #26a69a;
+}
+
+.btn-login,
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background: linear-gradient(90deg, #00796b 60%, #26a69a 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(38,166,154,0.12);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+.btn-login:hover,
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #26a69a 0%, #00796b 100%);
+}
+
+.form-footer {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.form-footer a {
+  color: #26a69a;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.form-footer a:hover {
+  color: #00796b;
+}
+
+.register-link {
+  margin-top: 0.5rem;
+}
+.register-link a {
+  color: #00796b;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.register-link a:hover {
+  color: #004d40;
+}
+
+.error {
+  color: #fff;
+  background: #e53935;
+  border-radius: 8px;
+  padding: 8px 0;
+  margin-top: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+}

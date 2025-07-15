@@ -1,144 +1,164 @@
-<!-- Tableau de bord employé -->
- 
 <?php
 session_start();
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "khadamati";
+require_once("../db_connection.php");
 
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die("Échec de la connexion : " . $conn->connect_error);
+// التحقق من دخول الموظف
+if (!isset($_SESSION['id_employe']) || !isset($_SESSION['nom'])) {
+    header("Location: login_employe.php");
+    exit();
 }
 
-// Assumons que l'employé est connecté et son ID est en session
-$id_employe = $_SESSION['id_employe'] ?? 1; // valeur par défaut pour test
+$id_employe = $_SESSION['id_employe'];
+$nom_employe = $_SESSION['nom'];
 
-// Obtenir la catégorie de l'employé
-// Obtenir la spécialité de l'employé
-$sql_cat = "SELECT specialite FROM employe WHERE id_employe = ?";
-$stmt = $conn->prepare($sql_cat);
-$stmt->bind_param("i", $id_employe);
-$stmt->execute();
-$result_cat = $stmt->get_result();
-$row_cat = $result_cat->fetch_assoc();
-$specialite = $row_cat['specialite'] ?? null;
+// استخراج الخدمة والفئة الخاصة بالموظف
+$sqlEmp = "SELECT id_service, id_categorie FROM employe WHERE id_employe = ?";
+$stmtEmp = $conn->prepare($sqlEmp);
+$stmtEmp->bind_param("i", $id_employe);
+$stmtEmp->execute();
+$resultEmp = $stmtEmp->get_result();
+$employe = $resultEmp->fetch_assoc();
 
-// Requête des demandes liées à la spécialité (texte)
-$sql = "SELECT d.id_demande, s.nom_service, d.date_demande, d.statut, c.nom
+$id_service = $employe['id_service'];
+$id_categorie = $employe['id_categorie'];
+
+// استخراج الطلبات المرتبطة بالخدمة والفئة
+
+$sql = "SELECT d.id_demande, d.description, d.date_demande, d.adresse, c.nom AS nom_client
         FROM demande d
-        JOIN service s ON d.id_service = s.id_service
         JOIN client c ON d.id_client = c.id_client
-        WHERE s.nom_service = ? AND d.statut = 'en attente'";
-
-// Obtenir la spécialité de l'employé
-$sql_cat = "SELECT specialite FROM employe WHERE id_employe = ?";
-$stmt = $conn->prepare($sql_cat);
-$stmt->bind_param("i", $id_employe);
+        WHERE d.statut = 'en_attente' 
+        AND d.id_service = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_service);
 $stmt->execute();
-$result_cat = $stmt->get_result();
-$row_cat = $result_cat->fetch_assoc();
-$specialite = $row_cat['specialite'] ?? null;
-
-$stmt2 = $conn->prepare($sql);
-if (!$stmt2) {
-    die("Erreur dans la requête: " . $conn->error);
-}
-$stmt2->bind_param("s", $specialite);
-$stmt2->execute();
-$result = $stmt2->get_result();
+$result = $stmt->get_result();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Tableau de Bord - Employé</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    body { font-family: 'Tajawal', sans-serif; background-color: #f9f9f9; }
-    .sidebar {
-      width: 220px; background-color: #004d40; min-height: 100vh;
-      color: white; position: fixed; top: 0; left: 0; padding: 2rem 1rem;
-    }
-    .sidebar h4 { color: #fff; margin-bottom: 2rem; text-align: center; }
-    .sidebar a {
-      display: block; color: white; padding: 10px; margin-bottom: 10px;
-      text-decoration: none; border-radius: 5px;
-    }
-    .sidebar a:hover { background-color: #00695c; }
-    .content { margin-left: 240px; padding: 2rem; }
-    .header {
-      background-color: white; padding: 1rem 2rem; border-bottom: 1px solid #ddd;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .stats {
-      display: flex; gap: 1rem; margin-top: 2rem;
-    }
-    .stat-card {
-      background-color: white; padding: 1rem; border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex: 1; text-align: center;
-    }
-    table {
-      background-color: white; border-radius: 8px; overflow: hidden;
-    }
-    th { background-color: #e0f2f1; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Dashboard Employé</title>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #343a40;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding-top: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .main {
+            margin-left: 230px;
+            padding: 20px;
+        }
+        .welcome {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+        }
+        th {
+            background-color: green;
+            color: white;
+            border-raduis: 4px;
+        }
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .acc { background-color: #28a745; }
+        .ref { background-color: #dc3545; }
+         .ter { background-color: green; 
+            border-raduis:4px; }
+    </style>
 </head>
 <body>
+    <div class="sidebar">
+        <img src="../partie_login/images/logok2.jpg" alt="Logo" style="width: 190px; height: auto; margin-bottom: 10px; display: block; margin-left: 10px; margin-right: 0;">
+        <a href="#">Tableau de bord</a>
+        <a href="#">Commandes</a>
+        <a href="#">Déconnexion</a>
+    </div>
 
-<div class="sidebar">
-  <h4>🛠 Khadamati</h4>
-  <a href="#">🏠 Tableau de bord</a>
-  <a href="#">📋 Mes demandes</a>
-  <a href="#">👤 Profil</a>
-  <a href="#">⚙️ Paramètres</a>
-  <a href="#">🔓 Déconnexion</a>
-</div>
+    <div class="main">
+        <div class="welcome">Bienvenue, <?php echo htmlspecialchars($nom_employe); ?> !</div>
 
-<div class="content">
-  <div class="header">
-    <h3>Bienvenue, Employé</h3>
-    <button class="btn btn-outline-danger">Déconnexion</button>
-  </div>
+        <h3>Demandes en attente</h3>
+        <table>
+            <thead>
+                
+                <tr>
+                    <th>Service</th>
+                    <th>Client</th>
+                    <th>Adresse</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($id_service); ?></td>
+                    <td><?php echo htmlspecialchars($row['nom_client']); ?></td>
+                    <td><?php echo htmlspecialchars($row['adresse']); ?></td>
+                    <td><?php echo htmlspecialchars($row['description']); ?></td>
+                    <td><?php echo htmlspecialchars($row['date_demande']); ?></td>
+                       <td>
+  <!-- زر Accepter -->
+  <form  method="POST" action="acc.php" style="display:inline;">
+      <input  type="hidden" name="id_demande" value="<?= $row['id_demande'] ?>">
+      <button type="submit" class="acc">Accepter</button>
+  </form>
 
-  <div class="stats">
-    <div class="stat-card"><h4>3</h4><p>En cours</p></div>
-    <div class="stat-card"><h4>7</h4><p>Terminées</p></div>
-    <div class="stat-card"><h4>2</h4><p>Aujourd'hui</p></div>
-  </div>
+  <!-- زر Refuser -->
+  <form method="POST" action="reff.php" style="display:inline;">
+      <input type="hidden" name="id_demande" value="<?= $row['id_demande'] ?>">
+      <button type="submit" class="ref">Refuser</button>
+  </form>
 
-  <div class="mt-5">
-    <h4>Demandes dans votre domaine</h4>
-    <table class="table table-bordered mt-3">
-      <thead>
-        <tr>
-          <th>Service</th>
-          <th>Client</th>
-          <th>Date</th>
-          <th>État</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php while($row = $result->fetch_assoc()): ?>
-        <tr>
-          <td><?= htmlspecialchars($row['nom_service']) ?></td>
-          <td><?= htmlspecialchars($row['nom_client']) ?></td>
-          <td><?= htmlspecialchars($row['date_demande']) ?></td>
-          <td><?= htmlspecialchars($row['etat']) ?></td>
-          <td><a href="#" class="btn btn-sm btn-primary">Voir</a></td>
-        </tr>
-        <?php endwhile; ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- زر Terminer -->
+  <form method="POST" action="terminer.php" style="display:inline;">
+      <input type="hidden" name="id_demande" value="<?= $row['id_demande'] ?>">
+      <button type="submit" class="ter">Terminer</button>
+  </form>
+</td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
