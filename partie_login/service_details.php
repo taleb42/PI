@@ -21,9 +21,10 @@ $service = $result->fetch_assoc();
     <meta charset="UTF-8">
     <title>Détails du service</title>
     <link rel="stylesheet" href="../style/style.css">
+
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             padding: 40px 20px;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
@@ -143,9 +144,10 @@ $service = $result->fetch_assoc();
             position: relative;
         }
         .logok {
-            text-align: center;
+       
             margin-bottom: 19px;
-            width: 10px;
+            
+            width: 110px;
         }   
     </style>
 </head>
@@ -153,10 +155,8 @@ $service = $result->fetch_assoc();
     <a href="indexx.php" class="back-link">Retour à l'accueil</a>
     
     <div class="container">
-      <div class="logok">
-      <img src="images/logok.jpg" alt="Khadamati Logo">
-
-    </div>
+     
+    
         <h2><?= htmlspecialchars($service['nom_service']) ?></h2>
 
         <div class="info">

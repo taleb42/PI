@@ -403,7 +403,7 @@ if ($role === 'admin') {
     }
 
     // Mise à jour toutes les 30 secondes
-    setInterval(updateStats, 30000);
+    setInterval(updateStats, 60000);
     </script>
 </body>
 </html>

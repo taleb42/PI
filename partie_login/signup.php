@@ -11,8 +11,16 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
     <meta charset="UTF-8">
     <title>Créer un compte - Khadamati</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 500px;
+        }
+        </style>
 </head>
-<body class="bg-gradient-to-r from-blue-100 to-white min-h-screen flex items-center justify-center">
+<body  class="bg-gradient-to-r from-blue-100 to-white min-h-screen flex items-center justify-center">
 
     <div class="absolute top-5 left-5 flex items-center gap-2">
         
@@ -28,7 +36,7 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
         <?php endif; ?>
 <img src="images/logok.jpg" alt="Khadamati Logo" class="h-10">
         <h1 class="text-2xl font-bold text-center mb-6">Créer un compte</h1>
-        
+        <div class="form">
         <form method="POST" action="../partie_client/insert_client.php" class="space-y-5" id="form">
             <div>
                 <label for="name" class="block font-semibold">Nom complet</label>
@@ -56,7 +64,8 @@ $success_message = isset($_GET['success']) ? htmlspecialchars(urldecode($_GET['s
             Vous avez déjà un compte ?
             <a href="login_client.php" class="text-blue-500 underline">Connexion</a>
         </p>
-    </div>    <script>
+    </div> 
+          <script>
         document.getElementById("form").addEventListener("submit", function(e) {
             const pass = document.getElementById("password").value;
             const confirm = document.getElementById("confirm-password").value;

@@ -131,14 +131,14 @@ require_once '../include/db_config.php';
       </div>
       <div class="footer-section">
         <h3>Informations de contact</h3>
-        <p>Téléphone : (123) 456-7890</p>
-        <p>Email : info@khadamati.com</p>
-        <p>Adresse : 123 rue du Service</p>
+        <p>Téléphone : +222 42909646 </p>
+        <p>Email : khadamaty@gmail.com</p>
+        <p>Adresse : Nouakchott TVZ</p>
       </div>
       <div class="footer-section">
         <h3>Suivez-nous</h3>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="https://web.facebook.com/profile.php?id=100068443420353"><i class="fab fa-facebook"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
