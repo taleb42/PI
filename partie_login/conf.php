@@ -39,7 +39,7 @@ $result = $stmt->get_result();
             background: white;
             padding: 40px;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 300px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .container:hover {
@@ -109,7 +109,9 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>    <div class="container">
+   <img src="../partie_login/images/logok.jpg" alt="Logo" style="width: 165px; height: auto; margin-bottom: 8px; display: block; margin-left: 0px; margin-right: 0;">
         <div class="message">
+              
             <i class="fas fa-check-circle" style="font-size: 4rem; color: #2ecc71; margin-bottom: 1rem; display: block;"></i>
             <h3 style="margin-bottom: 15px;"><strong>Demande Envoyée</strong></h3>
             <p>Votre demande a été envoyée avec succès.</p>

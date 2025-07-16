@@ -19,7 +19,9 @@ require_once '../include/db_config.php';
   <header>
    
     <nav>
+      <img src="../partie_login/images/logok2.jpg" alt="Logo" style="width: 190px; height: auto; margin-bottom: 8px; display: block; margin-left: 15px; margin-right: 0;">
       <ul>
+        
         <li><a href="#" class="active">Accueil</a></li>
         <li><a href="#service">Services</a></li>
         <li><a href="#about">À propos</a></li>

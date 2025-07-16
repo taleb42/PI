@@ -24,7 +24,7 @@ $service = $result->fetch_assoc();
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Tajawal',Arial, sans-serif;
             padding: 40px 20px;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
@@ -35,18 +35,19 @@ $service = $result->fetch_assoc();
             background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 150px 1000px rgba(0,0,0,0.18);
         }
         h2 {
-            color: #2c3e50;
+            color: black;
             font-size: 28px;
             margin-bottom: 25px;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
+            text-align: center;
         }
         .info {
             margin-bottom: 30px;
-            background: #f8f9fa;
+            background: whitesmoke;
             padding: 20px;
             border-radius: 10px;
         }
@@ -100,7 +101,7 @@ $service = $result->fetch_assoc();
         button {
             background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
-            padding: 13px 25px;
+            padding: 13px 125px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -109,8 +110,9 @@ $service = $result->fetch_assoc();
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+           transform: translateX(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            background: rgb(28, 99, 54);
         }
         .required {
             color: #dc3545;
@@ -155,9 +157,11 @@ $service = $result->fetch_assoc();
     <a href="indexx.php" class="back-link">Retour à l'accueil</a>
     
     <div class="container">
-     
+        <img src="../partie_login/images/logok.jpg" alt="Logo" style="width: 180px; height: auto; margin-bottom: 8px; display: block; margin-left: 0px; margin-right: 0;">
+     <br>
     
-        <h2><?= htmlspecialchars($service['nom_service']) ?></h2>
+        <h2>Service <?= htmlspecialchars($service['nom_service']) ?></h2>
+    
 
         <div class="info">
             <p><strong>Description :</strong> <?= htmlspecialchars($service['description']) ?></p>
@@ -189,8 +193,9 @@ $service = $result->fetch_assoc();
                 </label>
                 <input type="file" name="photo" id="photo" accept="image/*">
             </div>
-
+<center>
             <button type="submit">Soumettre la demande</button>
+    </center>
         </form>
     </div>
 
